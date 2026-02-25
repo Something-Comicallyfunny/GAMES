@@ -1,317 +1,427 @@
 
-<!DOCTYPE html>
-
-
+<!doctype html>
+<html lang="en">
 <head>
-	 <title>
-   CB G@mes
-  </title>
-	
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4146748834676749"
-     crossorigin="anonymous"></script>
-	
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zero Games</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="/gate.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4146748834676749" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #0f111a;
+      --panel: rgba(24, 27, 41, 0.8);
+      --card: rgba(255, 255, 255, 0.04);
+      --accent: #ff9a3c;
+      --accent-2: #4dd0e1;
+      --text: #e7ecf4;
+      --muted: #9aa0af;
+      --border: rgba(255, 255, 255, 0.08);
+      --glow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1d2030 0, transparent 35%),
+                  radial-gradient(circle at 80% 0%, #222c45 0, transparent 30%),
+                  radial-gradient(circle at 50% 80%, #0d6b6c 0, transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      padding: 48px 18px 64px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--glow);
+      backdrop-filter: blur(14px);
+    }
+
+    header.hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 32px;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: #0f111a;
+      letter-spacing: 0.4px;
+      box-shadow: 0 15px 35px rgba(255, 154, 60, 0.35);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: -0.03em;
+    }
+
+    p.lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.18); }
+
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0f111a; border-color: transparent; }
+
+    .panel {
+      padding: 24px 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+      min-height: 44px;
+    }
+
+    .pill:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06); }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .section-meta { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .search input {
+      flex: 1;
+      padding: 14px 14px 14px 44px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 120ms ease, box-shadow 120ms ease;
+    }
+
+    .search input:focus { border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 0 6px rgba(77, 208, 225, 0.1); }
+
+    .search svg { position: absolute; margin-left: 16px; pointer-events: none; color: var(--muted); }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 14px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    footer .backup-links { display: flex; gap: 8px; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 640px) {
+      body { padding: 24px 14px 48px; }
+      header.hero { padding: 22px; }
+      h1 { font-size: 30px; }
+    }
+  </style>
 </head>
-
-  <body>
-     <!-- Div content -->
-<div style="margin:0 auto;text-align:center">
-	
-    <p>Welcome to Chili Bowl G@mes, This is a web page dedicated to providing unbl0cked g@mes. Along with providing new website makers embedable g@mes.</p>
-    <p>Everything <i>should</i> work. If something goes wrong please report an error at the <a href="https://github.com/CBGamesdev/chiliblox">Github.</a> Thanks and Enjoy.</p>
-	
-	<!-- Div align in the middle -->
-      <div style="margin-left:auto;margin-right:auto;text-align:center">
-         
+<body>
+  <div class="page">
+    <header class="hero glass">
+      <div>
+        <div class="brand">
+          <div class="brand-mark">ZG</div>
+          <div>
+            <h1>Zero Games</h1>
+            <p class="lead">A clean, fast directory of unblocked classics, Flash throwbacks, and emulated gems. Everything here is one click away.</p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/CBGamesdev/chiliblox">Report an issue</a>
+          <a class="btn" href="mediamisc/credits.html">Credits</a>
+        </div>
       </div>
-	
-	  </div>
-	  
-	  <!-- Div content -->
-<div style="margin:0 auto;text-align:center">
-	  <p>
- ----------------------------------------------------------------------
-    </p>
-
-    <h3>
-      Flash G@mes 
-    </h3>
-<a href="alien.html">Alien Hominid</a>
- -
-<a href="ageofwar.html">Age Of War</a>
--
-<a href="appleshoot.html">Apple Shooter</a>
--
-<a href="assroid.html">Asteroids</a>
--
-<a href="bigadventure.html">Abobbos Big Adventure</a>
--
-<a href="badpig.html">Bad Piggies</a>
--
-<a href="bloxorz.html">Bloxorz</a>
- -
-<a href="bloodyrage.html">Bloody Rage</a>
--
-<a href="bloons.html">Bloons Tower Defense</a>
--
- <a href="bubble.html">Bubble Shooter</a>
--
-<a href="colorcombat.html">Color Combat</a>
--
-<a href="commando.html">Commando</a>
--
-<a href="cube.html">Cubefield</a>
--
-<a href="dadnme.html">Dad n' Me</a>
--
-<a href="kong.html">Donkey Kong</a>
--
-<a href="flash/doom.html">Doom</a>
--
-<a href="ducklife.html">Duck Life</a>
--
- <a href="ducklife2.html">Duck Life 2</a>
--
- <a href="ducklife3.html">Duck Life 3</a>
--
-<a href="castle.html">Defend Your Castle</a>
--
-<a href="duckhunt.html">Duck Hunt</a>
--
-<a href="eman2.html">Electricman 2</a>
--
-<a href="bank.html">Escaping the Prison</a>
--
-<a href="stealing.html">Stealing the Diamond</a>
-- 
-<a href="fancypants.html">The Fancy Pants Adventures</a>
--
-<a href="flash/hand.html">Handless Millionaire</a>
--
-<a href="hobo.html">Hobo</a>
--
-<a href="hobo2.html">Hobo 2: Prison Brawl</a>
--
-<a href="ib.html">Interactive Buddy</a>
--
-<a href="learn2fly.html">Learn to Fly</a>
--
-<a href="miamishark.html">Miami Shark</a>
--
-<a href="NYshark.html">New York Shark</a>
--
-<a href="only.html">This is the Only Level</a>
--
-<a href="Pacman.html">Pac-Man</a>
--
-<a href="papaburger.html">Papa's Burgeria</a>
--
-<a href="papafreeze.html">Papa's Freezeria</a>
--
-<a href="papapancake.html">Papa's Pancakeria</a>
--
-<a href="papapizza.html">Papa's Pizzaria</a>
--
-<a href="papapasta.html">Papa's Pastaria</a>
--
-<a href="papasushi.html">Papa's Sushiria</a>
--
-<a href="papataco.html">Papa's Tacomia</a>
--
-<a href="papawing.html">Papa's Wingeria</a>
--
-<a href="pong.html">Pong</a>
--
-<a href="portal.html">Portal: The Flash Version</a>
--
-<a href="mario63.html">Super Mario 63</a>
--		      
-<a href="supermarioflash.html">Super Mario Flash</a>
--
-<a href="mariocombat.html">Mario Combat</a>
--
-<a href="meatboy.html">Meat Boy</a>
--
-<a href="miniputt.html">Mini Putt</a>
--
-<a href="waflashfix/mad2.html">Mutilate a Doll 2</a>
--
-<a href="pedro.html">My Friend Pedro</a>
--
-<a href="gunblood.html">Gunblood</a>
--
-<a href="riddleschool.html">Riddle School</a>
--
-<a href="riddleschool2.html">Riddle School 2</a>
--
-<a href="rs3.html">Riddle School 3</a>
--
-<a href="run.html">Run</a>
--
-<a href="run2.html">Run 2</a>
--
-<a href="smilewar.html">Smile War</a>
--
-<a href="stickrpg.html">Stick RPG</a>
--
-<a href="tetris.html">Tetris</a>
--
-<a href="quiz.html">The Impossible Quiz</a>
--
-<a href="quiz2.html">The Impossible Quiz 2</a>
--
-<a href="hardestgame.html">The World's Hardest Game</a>
--
-<a href="hardestgame2.html">The World's Hardest Game 2</a>
--
-<a href="turtle.html">Toss the Turtle</a>
--
-<a href="sonic.html">Ultimate Flash Sonic</a>
--
-<a href="yeti.html">Yeti Sports: Pingu Throw </a>
-			    
-	 
-    <p>
-      ----------------------------------------------------------------
-    </p>
-	   <h3>
-       Other G@mes
-    </h3>
-	  
-<a href="miscgame/1v1lol.html">1v1.lol</a>
--
-<a href="2048/index.html">2048</a>
--
-<a href="bstars/index.html">Basketball Stars</a>
--
-<a href="blackjack/index.html">BlackJack</a>
--
-<a href="blockblast/index.html">Block Blast</a>
--
-<a href="miscgame/chess.html">Chess</a>
--
-<a href="cookie/index.html">Cookie Clicker</a>
--
-<a href="ctr/index.html">Cut The Rope</a>
--
-<a href="dosbox/?soft=DOOM">DOOM</a>
--
-<a href="FNAF/2/index.html">FNAF 2</a>
--
-<a href="FNAF/3/index.html">FNAF 3</a>
--
-<a href="geomatrydash/geodash1.html">Geometry Dash</a>
--
-<a href="geomatrydash/Geometry Dash Subzero.html">Geometry Dash: Subzero</a>
--
-<a href="googdino/index.html">Google Dinosaur</a>
--
-<a href="googsnake/index.html">Google Snake</a>
--
-<a href="hw/index.html">Happy Wheels</a>
--
-<a href="mario/index.html">Mari0</a>
--
-<a href="minesweep/index.html">Minesweeper</a>
--
-<a href="minecrap/index.html">MineCraft (Classic)</a>
--
-<a href="motox3m/index.html">MotoX3M</a>
--
-<a href="motox3m2/index.html">MotoX3M 2</a>
--
-<a href="retrobowl/index.html">Retro Bowl</a>
--
-<a href="retrobowlcollege/index.html">Retro Bowl College</a>
--
-<a href="run3/index.html">Run 3</a>
--
-<a href="slope/index.html">Slope</a>
--
-<a href="miscgame/spacebar.html">Spacebar Smasher</a>
--
-<a href="sm64/index.html">Super Mario 64</a>
--
-<a href="totm/index.html">Tomb of the Mask</a>
--
-<a href="wolfen/index.html">Wolfenstein 3D</a>
-    <p>
-      ----------------------------------------------------------------
-    </p>
-	   <h3>
-      Emul@ted
-    </h3>
-<a href="example/batman.html">Batman (NES)</a>
--
-<a href="miscgame/contracool.html">Contra (NES)</a>
--
-<a href="miscgame/doubled.html">Double Dragon (NES)</a>
--
-<a href="example/ducktales.html">Duck Tales (NES)</a>
--
-<a href="example/f13.html">Friday the 13th (NES)</a>
- -
-<a href="miscgame/megamandos.html">Mega Man 2 (NES)</a>
- -
-<a href="emu/mtyson.html">Mike Tysons Punch Out(NES)</a>
--
-<a href="example/rivercity.html">River City Ransom (NES)
--
-<a href="miscgame/mariones.html">Super Mario Bros. (NES)</a>
- -
-<a href="example/sm2.html">Super Mario Bros. 2 (NES)</a>
--
-<a href="example/sm3.html">Super Mario Bros. 3 (NES)</a>
- -
-<a href="GBA-gh-pages/launcher.html#dkc">Donkey Kong Country (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#dm">DOOM (GBA)</a>
--	
-<a href="GBA-gh-pages/launcher.html#gta">Grand Theft Auto (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#nbaj">NBA Jam 2002 (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#pokemonemerald">Pokemon Emerald (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#super_street_fighter_2_turbo_revival">Street Fighter II TURBO (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#super_street_fighter_3_alpha">Street Fighter Alpha III (GBA)</a>
--
-<a href="GBA-gh-pages/launcher.html#supermarioadvance2">Super Mario World (GBA)</a>
--
-<a href="emu/umk3.html">Ultimate Mortal Kombat 3 (SNES)</a>
--
-<a href="emu/mariokartds.html">Mario Kart (DS)</a>
--
-<a href="emu/goldeneye.html">Goldeneye 007 (N64)</a>
--
-<a href="emu/mkart64.html">Mario Kart 64 (N64)</a>
--
-<a href="emu/wwf.html">WWF No Mercy (N64)</a>
-
-
-    <p>
-      ----------------------------------------------------------------
-    </p>
-	  <footer> 
-		  
-		   <p class="aligncenter">
-    <img src="mediamisc/download.gif" alt="hey bozo we´re under construction!!" />
-</p>
-		  <p>Sic Semper Tyrannis! More Backups Coming.</p>
-
-		  <h4>Official Backups:</h4>
- <a href="https://boredmath.github.io/cbf/">1</a> - <a href="https://chiboga.github.io/chilibowlflash/">2</a>
-		  
-		  <p><a href="mediamisc/credits.html">Credits</a></p>
-		  </footer>
-		  
-		  </body>
-	  
-
-<!-- Div align in the middle -->
-      <div style="margin-left:auto;margin-right:auto;text-align:center">
-         
+      <div class="glass" style="padding: 18px 18px 12px; border: 1px dashed var(--border);">
+        <div class="search" aria-label="Search games">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.65" y1="16.65" x2="21" y2="21"></line></svg>
+          <input id="search" type="search" placeholder="Search anything: e.g. mario, papa, shark" />
+        </div>
+        <p class="section-meta">Tip: press / to focus search, enter to open the highlighted game.</p>
       </div>
-	
-	  </div>	  
+    </header>
+
+    <section class="panel glass">
+      <div class="section-grid">
+        <div>
+          <h2>Flash Classics</h2>
+          <p class="section-meta">All the nostalgic SWF hits, now in one tidy grid.</p>
+        </div>
+        <div>
+          <h2>Arcade & Originals</h2>
+          <p class="section-meta">Modern browser-friendly picks, physics toys, and speedrun staples.</p>
+        </div>
+        <div>
+          <h2>Emulated Favorites</h2>
+          <p class="section-meta">NES, GBA, SNES, N64, and DS selections ready to launch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass" id="flash">
+      <h2>Flash G@mes</h2>
+      <div class="pill-grid" data-section="Flash">
+        <a class="pill game-link" href="alien.html" data-label="Alien Hominid">Alien Hominid</a>
+        <a class="pill game-link" href="ageofwar.html" data-label="Age Of War">Age Of War</a>
+        <a class="pill game-link" href="appleshoot.html" data-label="Apple Shooter">Apple Shooter</a>
+        <a class="pill game-link" href="assroid.html" data-label="Asteroids">Asteroids</a>
+        <a class="pill game-link" href="bigadventure.html" data-label="Abobbos Big Adventure">Abobbos Big Adventure</a>
+        <a class="pill game-link" href="badpig.html" data-label="Bad Piggies">Bad Piggies</a>
+        <a class="pill game-link" href="bloxorz.html" data-label="Bloxorz">Bloxorz</a>
+        <a class="pill game-link" href="bloons.html" data-label="Bloons Tower Defense">Bloons Tower Defense</a>
+        <a class="pill game-link" href="bubble.html" data-label="Bubble Shooter">Bubble Shooter</a>
+        <a class="pill game-link" href="colorcombat.html" data-label="Color Combat">Color Combat</a>
+        <a class="pill game-link" href="commando.html" data-label="Commando">Commando</a>
+        <a class="pill game-link" href="cube.html" data-label="Cubefield">Cubefield</a>
+        <a class="pill game-link" href="dadnme.html" data-label="Dad n' Me">Dad n' Me</a>
+        <a class="pill game-link" href="kong.html" data-label="Donkey Kong">Donkey Kong</a>
+        <a class="pill game-link" href="flash/doom.html" data-label="Doom Flash">Doom</a>
+        <a class="pill game-link" href="ducklife.html" data-label="Duck Life">Duck Life</a>
+        <a class="pill game-link" href="ducklife2.html" data-label="Duck Life 2">Duck Life 2</a>
+        <a class="pill game-link" href="ducklife3.html" data-label="Duck Life 3">Duck Life 3</a>
+        <a class="pill game-link" href="castle.html" data-label="Defend Your Castle">Defend Your Castle</a>
+        <a class="pill game-link" href="duckhunt.html" data-label="Duck Hunt">Duck Hunt</a>
+        <a class="pill game-link" href="eman2.html" data-label="Electricman 2">Electricman 2</a>
+        <a class="pill game-link" href="bank.html" data-label="Escaping the Prison">Escaping the Prison</a>
+        <a class="pill game-link" href="stealing.html" data-label="Stealing the Diamond">Stealing the Diamond</a>
+        <a class="pill game-link" href="fancypants.html" data-label="The Fancy Pants Adventures">The Fancy Pants Adventures</a>
+        <a class="pill game-link" href="ib.html" data-label="Interactive Buddy">Interactive Buddy</a>
+        <a class="pill game-link" href="learn2fly.html" data-label="Learn to Fly">Learn to Fly</a>
+        <a class="pill game-link" href="only.html" data-label="This is the Only Level">This is the Only Level</a>
+        <a class="pill game-link" href="Pacman.html" data-label="Pac-Man">Pac-Man</a>
+        <a class="pill game-link" href="papaburger.html" data-label="Papa's Burgeria">Papa's Burgeria</a>
+        <a class="pill game-link" href="papafreeze.html" data-label="Papa's Freezeria">Papa's Freezeria</a>
+        <a class="pill game-link" href="papapancake.html" data-label="Papa's Pancakeria">Papa's Pancakeria</a>
+        <a class="pill game-link" href="papapizza.html" data-label="Papa's Pizzaria">Papa's Pizzaria</a>
+        <a class="pill game-link" href="papapasta.html" data-label="Papa's Pastaria">Papa's Pastaria</a>
+        <a class="pill game-link" href="papasushi.html" data-label="Papa's Sushiria">Papa's Sushiria</a>
+        <a class="pill game-link" href="papataco.html" data-label="Papa's Tacomia">Papa's Tacomia</a>
+        <a class="pill game-link" href="papawing.html" data-label="Papa's Wingeria">Papa's Wingeria</a>
+        <a class="pill game-link" href="pong.html" data-label="Pong">Pong</a>
+        <a class="pill game-link" href="portal.html" data-label="Portal The Flash Version">Portal: The Flash Version</a>
+        <a class="pill game-link" href="mario63.html" data-label="Super Mario 63">Super Mario 63</a>
+        <a class="pill game-link" href="supermarioflash.html" data-label="Super Mario Flash">Super Mario Flash</a>
+        <a class="pill game-link" href="mariocombat.html" data-label="Mario Combat">Mario Combat</a>
+        <a class="pill game-link" href="meatboy.html" data-label="Meat Boy">Meat Boy</a>
+        <a class="pill game-link" href="miniputt.html" data-label="Mini Putt">Mini Putt</a>
+        <a class="pill game-link" href="pedro.html" data-label="My Friend Pedro">My Friend Pedro</a>
+        <a class="pill game-link" href="riddleschool.html" data-label="Riddle School">Riddle School</a>
+        <a class="pill game-link" href="riddleschool2.html" data-label="Riddle School 2">Riddle School 2</a>
+        <a class="pill game-link" href="rs3.html" data-label="Riddle School 3">Riddle School 3</a>
+        <a class="pill game-link" href="run.html" data-label="Run">Run</a>
+        <a class="pill game-link" href="run2.html" data-label="Run 2">Run 2</a>
+        <a class="pill game-link" href="smilewar.html" data-label="Smile War">Smile War</a>
+        <a class="pill game-link" href="stickrpg.html" data-label="Stick RPG">Stick RPG</a>
+        <a class="pill game-link" href="tetris.html" data-label="Tetris">Tetris</a>
+        <a class="pill game-link" href="quiz.html" data-label="The Impossible Quiz">The Impossible Quiz</a>
+        <a class="pill game-link" href="quiz2.html" data-label="The Impossible Quiz 2">The Impossible Quiz 2</a>
+        <a class="pill game-link" href="hardestgame.html" data-label="The World's Hardest Game">The World's Hardest Game</a>
+        <a class="pill game-link" href="hardestgame2.html" data-label="The World's Hardest Game 2">The World's Hardest Game 2</a>
+        <a class="pill game-link" href="turtle.html" data-label="Toss the Turtle">Toss the Turtle</a>
+        <a class="pill game-link" href="sonic.html" data-label="Ultimate Flash Sonic">Ultimate Flash Sonic</a>
+        <a class="pill game-link" href="yeti.html" data-label="Yeti Sports Pingu Throw">Yeti Sports: Pingu Throw</a>
+      </div>
+    </section>
+
+    <section class="panel glass" id="arcade">
+      <h2>Other G@mes</h2>
+      <div class="pill-grid" data-section="Arcade">
+        <a class="pill game-link" href="miscgame/1v1lol.html" data-label="1v1.lol">1v1.lol</a>
+        <a class="pill game-link" href="2048/index.html" data-label="2048">2048</a>
+        <a class="pill game-link" href="bstars/index.html" data-label="Basketball Stars">Basketball Stars</a>
+        <a class="pill game-link" href="blackjack/index.html" data-label="BlackJack">BlackJack</a>
+        <a class="pill game-link" href="blockblast/index.html" data-label="Block Blast">Block Blast</a>
+        <a class="pill game-link" href="miscgame/chess.html" data-label="Chess">Chess</a>
+        <a class="pill game-link" href="cookie/index.html" data-label="Cookie Clicker">Cookie Clicker</a>
+        <a class="pill game-link" href="ctr/index.html" data-label="Cut The Rope">Cut The Rope</a>
+        <a class="pill game-link" href="dosbox/?soft=DOOM" data-label="DOOM">DOOM</a>
+        <a class="pill game-link" href="FNAF/2/index.html" data-label="FNAF 2">FNAF 2</a>
+        <a class="pill game-link" href="FNAF/3/index.html" data-label="FNAF 3">FNAF 3</a>
+        <a class="pill game-link" href="geomatrydash/geodash1.html" data-label="Geometry Dash">Geometry Dash</a>
+        <a class="pill game-link" href="geomatrydash/Geometry Dash Subzero.html" data-label="Geometry Dash Subzero">Geometry Dash: Subzero</a>
+        <a class="pill game-link" href="googdino/index.html" data-label="Google Dinosaur">Google Dinosaur</a>
+        <a class="pill game-link" href="googsnake/index.html" data-label="Google Snake">Google Snake</a>
+        <a class="pill game-link" href="hw/index.html" data-label="Happy Wheels">Happy Wheels</a>
+        <a class="pill game-link" href="mario/index.html" data-label="Mari0">Mari0</a>
+        <a class="pill game-link" href="minesweep/index.html" data-label="Minesweeper">Minesweeper</a>
+        <a class="pill game-link" href="minecrap/index.html" data-label="Minecraft Classic">Minecraft (Classic)</a>
+        <a class="pill game-link" href="motox3m/index.html" data-label="MotoX3M">MotoX3M</a>
+        <a class="pill game-link" href="motox3m2/index.html" data-label="MotoX3M 2">MotoX3M 2</a>
+        <a class="pill game-link" href="retrobowl/index.html" data-label="Retro Bowl">Retro Bowl</a>
+        <a class="pill game-link" href="retrobowlcollege/index.html" data-label="Retro Bowl College">Retro Bowl College</a>
+        <a class="pill game-link" href="run3/index.html" data-label="Run 3">Run 3</a>
+        <a class="pill game-link" href="slope/index.html" data-label="Slope">Slope</a>
+        <a class="pill game-link" href="miscgame/spacebar.html" data-label="Spacebar Smasher">Spacebar Smasher</a>
+        <a class="pill game-link" href="sm64/index.html" data-label="Super Mario 64">Super Mario 64</a>
+        <a class="pill game-link" href="totm/index.html" data-label="Tomb of the Mask">Tomb of the Mask</a>
+        <a class="pill game-link" href="wolfen/index.html" data-label="Wolfenstein 3D">Wolfenstein 3D</a>
+      </div>
+    </section>
+
+    <section class="panel glass" id="emulated">
+      <h2>Emul@ted</h2>
+      <div class="pill-grid" data-section="Emulated">
+        <a class="pill game-link" href="example/batman.html" data-label="Batman NES">Batman (NES)</a>
+        <a class="pill game-link" href="miscgame/contracool.html" data-label="Contra NES">Contra (NES)</a>
+        <a class="pill game-link" href="miscgame/doubled.html" data-label="Double Dragon NES">Double Dragon (NES)</a>
+        <a class="pill game-link" href="example/ducktales.html" data-label="Duck Tales NES">Duck Tales (NES)</a>
+        <a class="pill game-link" href="example/f13.html" data-label="Friday the 13th NES">Friday the 13th (NES)</a>
+        <a class="pill game-link" href="miscgame/megamandos.html" data-label="Mega Man 2 NES">Mega Man 2 (NES)</a>
+        <a class="pill game-link" href="emu/mtyson.html" data-label="Mike Tysons Punch Out NES">Mike Tysons Punch Out (NES)</a>
+        <a class="pill game-link" href="example/rivercity.html" data-label="River City Ransom NES">River City Ransom (NES)</a>
+        <a class="pill game-link" href="miscgame/mariones.html" data-label="Super Mario Bros NES">Super Mario Bros. (NES)</a>
+        <a class="pill game-link" href="example/sm2.html" data-label="Super Mario Bros 2 NES">Super Mario Bros. 2 (NES)</a>
+        <a class="pill game-link" href="example/sm3.html" data-label="Super Mario Bros 3 NES">Super Mario Bros. 3 (NES)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#dkc" data-label="Donkey Kong Country GBA">Donkey Kong Country (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#dm" data-label="DOOM GBA">DOOM (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#nbaj" data-label="NBA Jam 2002 GBA">NBA Jam 2002 (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#pokemonemerald" data-label="Pokemon Emerald GBA">Pokemon Emerald (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#super_street_fighter_2_turbo_revival" data-label="Street Fighter II Turbo GBA">Street Fighter II TURBO (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#super_street_fighter_3_alpha" data-label="Street Fighter Alpha III GBA">Street Fighter Alpha III (GBA)</a>
+        <a class="pill game-link" href="GBA-gh-pages/launcher.html#supermarioadvance2" data-label="Super Mario World GBA">Super Mario World (GBA)</a>
+        <a class="pill game-link" href="emu/umk3.html" data-label="Ultimate Mortal Kombat 3 SNES">Ultimate Mortal Kombat 3 (SNES)</a>
+        <a class="pill game-link" href="emu/mariokartds.html" data-label="Mario Kart DS">Mario Kart (DS)</a>
+        <a class="pill game-link" href="emu/psp.html" data-label="PSP Launcher EmulatorJS">PSP Launcher</a>
+        <a class="pill game-link" href="emu/goldeneye.html" data-label="Goldeneye 007 N64">Goldeneye 007 (N64)</a>
+        <a class="pill game-link" href="emu/mkart64.html" data-label="Mario Kart 64 N64">Mario Kart 64 (N64)</a>
+        <a class="pill game-link" href="emu/wwf.html" data-label="WWF No Mercy N64">WWF No Mercy (N64)</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>Sic Semper Tyrannis! More backups coming.</p>
+      <div class="backup-links">
+        <a class="btn" href="https://boredmath.github.io/cbf/">Backup 1</a>
+        <a class="btn" href="https://chiboga.github.io/chilibowlflash/">Backup 2</a>
+      </div>
+      <p>Thanks for playing!</p>
+    </footer>
+  </div>
+
+  <script>
+    // Simple client-side search across all game pills
+    const searchInput = document.getElementById("search");
+    const pills = Array.from(document.querySelectorAll(".game-link"));
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+
+    const filter = (query) => {
+      const q = query.trim().toLowerCase();
+      pills.forEach(pill => {
+        const match = pill.dataset.label.toLowerCase().includes(q);
+        pill.classList.toggle("hidden", !match);
+      });
+
+      sections.forEach(section => {
+        const visible = Array.from(section.querySelectorAll(".game-link"))
+          .some(link => !link.classList.contains("hidden"));
+        section.classList.toggle("hidden", q && !visible);
+      });
+    };
+
+    searchInput.addEventListener("input", (e) => filter(e.target.value));
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+  </script>
+</body>
 </html>

@@ -1,27 +1,95 @@
+<!doctype html>
+<html lang="en">
 <head>
-  <title>The Credits Page for all you dirty people who vist this website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zero Games · Credits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f111a;
+      --panel: rgba(24, 27, 41, 0.9);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #e7ecf4;
+      --muted: #a4acbc;
+      --accent: #ff9a3c;
+      --accent-2: #4dd0e1;
+      --glow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1d2030 0, transparent 35%),
+                  radial-gradient(circle at 80% 0%, #222c45 0, transparent 30%),
+                  radial-gradient(circle at 50% 80%, #0d6b6c 0, transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      padding: 48px 18px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--glow);
+      padding: 28px;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    h1 { margin: 0 0 8px; font-size: 34px; letter-spacing: -0.03em; }
+    h2 { margin: 0 0 16px; font-size: 20px; color: var(--muted); font-weight: 600; }
+    p { margin: 0 0 12px; line-height: 1.6; color: var(--muted); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .pill:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.08); }
+
+    .accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0f111a;
+      border: none;
+    }
+
+    .grid { display: grid; gap: 12px; }
+  </style>
 </head>
-
-
-
 <body>
-<div style="margin:0 auto;text-align:center">
-   
-      <!-- Div align in the middle -->
-  <h1>Website by Sean S</h1>
-<h2>Also, credit to original creators (Don't sue me)</h2>
-  
-<marquee behavior="scroll" direction="left">
-<img src="https://i.postimg.cc/h4k6L8JV/chocolate-cake.gif" alt="Chocolate Cake">
-</marquee>
-
-  
-
-      <div style="margin-left:auto;margin-right:auto;text-align:center">
-         
+  <main class="card">
+    <h1>Credits</h1>
+    <h2>Zero Games is built and maintained with ❤️</h2>
+    <p><strong>Website by Ezra D.</strong> Also, credit to original creators (Don't sue me).</p>
+    <div class="grid">
+      <p><strong>Site & curation:</strong> Ezra Dixon (ZeroAudio.net)</p>
+      <p><strong>Original game creators:</strong> Massive thanks to all the developers whose classics appear here.</p>
+      <p><strong>Tech stack:</strong> Static hosting with a lightweight front-end and archived Flash/HTML5 builds.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+        <a class="pill accent" href="https://zeroaudio.net" target="_blank" rel="noopener">Visit ZeroAudio.net</a>
+        <a class="pill" href="/">Back to Zero Games</a>
       </div>
-
-</div>
-
+    </div>
+  </main>
 </body>
-    
+</html>
+
