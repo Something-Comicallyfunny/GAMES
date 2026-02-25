@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zero Games - PSP Launcher</title>
+    <script src="../gate.js"></script>
+    <style>
+      :root {
+        --bg: #0f111a;
+        --panel: rgba(24, 27, 41, 0.88);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: #e7ecf4;
+        --muted: #a4acbc;
+        --accent: #4dd0e1;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+        background: radial-gradient(circle at 20% 20%, #1d2030 0, transparent 35%),
+                    radial-gradient(circle at 80% 0%, #222c45 0, transparent 30%),
+                    var(--bg);
+        color: var(--text);
+        padding: 20px;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 30px;
+      }
+
+      p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      label { font-size: 14px; color: var(--muted); display: block; margin-bottom: 6px; }
+
+      input[type="file"] {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      button {
+        margin-top: 12px;
+        border: none;
+        background: linear-gradient(135deg, #ff9a3c, var(--accent));
+        color: #101319;
+        font-weight: 700;
+        padding: 11px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      #status { margin-top: 10px; min-height: 18px; font-size: 14px; color: var(--muted); }
+
+      #game-wrap {
+        width: 100%;
+        height: 72vh;
+        min-height: 460px;
+        max-width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      #game {
+        width: 100%;
+        height: 100%;
+      }
+
+      .warn {
+        margin-top: 10px;
+        color: #ffb366;
+      }
+
+      a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="card">
+        <h1>PSP Launcher (EmulatorJS)</h1>
+        <p>Pick your PSP game and optional BIOS, then click <strong>Launch PSP</strong>. This page uses the official PSP setup (`EJS_core = 'psp'`, `EJS_threads = true`).</p>
+        <div class="row">
+          <div>
+            <label for="rom">PSP Game (.iso / .cso / .pbp)</label>
+            <input id="rom" type="file" accept=".iso,.cso,.pbp,.elf,.prx" />
+          </div>
+          <div>
+            <label for="bios">PSP BIOS (optional)</label>
+            <input id="bios" type="file" accept=".bin,.rom,.zip" />
+          </div>
+        </div>
+        <button id="launch">Launch PSP</button>
+        <div id="status"></div>
+        <p class="warn" id="isolation"></p>
+      </section>
+
+      <section class="card">
+        <div id="game-wrap"><div id="game"></div></div>
+      </section>
+    </div>
+
+    <script>
+      const statusEl = document.getElementById("status");
+      const isolationEl = document.getElementById("isolation");
+
+      if (!window.crossOriginIsolated) {
+        isolationEl.innerHTML = "PSP needs thread headers. Run with <strong>node dev-server.js</strong> (or another server with COOP/COEP), then open this page from that server.";
+      }
+
+      window.addEventListener("error", (event) => {
+        if (event && event.message) {
+          statusEl.textContent = "Runtime error: " + event.message;
+        }
+      });
+
+      document.getElementById("launch").addEventListener("click", () => {
+        const romFile = document.getElementById("rom").files[0];
+        const biosFile = document.getElementById("bios").files[0];
+
+        if (!romFile) {
+          statusEl.textContent = "Select a PSP game file first.";
+          return;
+        }
+
+        if (!window.crossOriginIsolated || typeof SharedArrayBuffer === "undefined") {
+          statusEl.textContent = "PSP requires cross-origin isolation (COOP/COEP). Start with: node dev-server.js and open http://localhost:8080/emu/psp.html";
+          return;
+        }
+
+        statusEl.textContent = "Loading emulator...";
+
+        window.EJS_player = "#game";
+        window.EJS_core = "psp";
+        window.EJS_gameUrl = URL.createObjectURL(romFile);
+        window.EJS_threads = true;
+        window.EJS_disableAutoLang = true;
+        window.EJS_language = "en-US";
+        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+        window.EJS_gameName = romFile.name;
+        window.EJS_color = "#4dd0e1";
+        window.EJS_ready = () => {
+          statusEl.textContent = "PSP launched.";
+        };
+
+        if (biosFile) {
+          window.EJS_biosUrl = URL.createObjectURL(biosFile);
+        }
+
+        if (window.EJS_emulator) {
+          try { window.EJS_emulator.exit(); } catch (_) {}
+          document.getElementById("game").innerHTML = "";
+        }
+
+        const oldLoader = document.getElementById("ejs-loader");
+        if (oldLoader) oldLoader.remove();
+
+        const loader = document.createElement("script");
+        loader.id = "ejs-loader";
+        loader.src = "https://cdn.emulatorjs.org/latest/data/loader.js";
+        loader.onload = () => {
+          statusEl.textContent = "Loader downloaded. Initializing core...";
+        };
+        loader.onerror = () => {
+          statusEl.textContent = "Failed to load EmulatorJS loader.";
+        };
+        document.body.appendChild(loader);
+      });
+    </script>
+  </body>
+</html>
