@@ -2,8 +2,6 @@
   const PASSWORD = "4004";
   const STORAGE_KEY = "zg_pass_ok";
 
-  if (localStorage.getItem(STORAGE_KEY) === "1") return;
-
   const applyStyles = () => {
     const style = document.createElement("style");
     style.textContent = `
@@ -23,7 +21,8 @@
   };
 
   const unlock = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
+    // Do not remember between sessions; always show gate on reload.
+    localStorage.removeItem(STORAGE_KEY);
     document.documentElement.classList.remove("gate-locked");
     const overlay = document.querySelector(".gate-overlay");
     if (overlay) overlay.remove();
@@ -70,7 +69,6 @@
   };
 
   const init = () => {
-    if (localStorage.getItem(STORAGE_KEY) === "1") return;
     applyStyles();
     if (document.body) {
       renderOverlay();
