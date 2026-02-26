@@ -1,6 +1,10 @@
 (() => {
   const PASSWORD = "4004";
-  const STORAGE_KEY = "zg_pass_ok";
+  // Bump key to force re-prompt even if a previous session was remembered.
+  const STORAGE_KEY = "zg_pass_ok_v2";
+  // Clear any old keys so prior unlocks don't linger.
+  sessionStorage.removeItem("zg_pass_ok");
+  localStorage.removeItem("zg_pass_ok");
 
   const applyStyles = () => {
     const style = document.createElement("style");
