@@ -21,8 +21,8 @@
   };
 
   const unlock = () => {
-    // Do not remember between sessions; always show gate on reload.
-    localStorage.removeItem(STORAGE_KEY);
+    // Remember for this tab only; cleared when the tab closes.
+    sessionStorage.setItem(STORAGE_KEY, "1");
     document.documentElement.classList.remove("gate-locked");
     const overlay = document.querySelector(".gate-overlay");
     if (overlay) overlay.remove();
@@ -69,6 +69,7 @@
   };
 
   const init = () => {
+    if (sessionStorage.getItem(STORAGE_KEY) === "1") return;
     applyStyles();
     if (document.body) {
       renderOverlay();
