@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Burnout Legends (NDS)</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #0b0b0d;
+      overflow: hidden;
+    }
+
+    #game {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="game"></div>
+
+  <script>
+    EJS_player = '#game';
+    EJS_core = 'nds';
+    EJS_biosUrl = '';
+    EJS_gameName = 'Burnout Legends (USA) (En,Fr,Es)';
+    EJS_gameUrl = '../Burnout Legends (USA) (En,Fr,Es).nds';
+    EJS_startOnLoaded = true;
+    EJS_pathtodata = 'data/';
+  </script>
+  <script src="data/loader.js"></script>
+</body>
+</html>
