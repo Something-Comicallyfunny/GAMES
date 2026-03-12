@@ -5,12 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zero Games</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="./ZERO.png?v=2" />
-  <link rel="icon" type="image/png" sizes="192x192" href="./ZERO.png?v=2" />
-  <link rel="shortcut icon" type="image/png" href="./ZERO.png?v=2" />
-  <link rel="apple-touch-icon" href="./ZERO.png?v=2" />
-  <link rel="manifest" href="./manifest.webmanifest?v=2" />
-  <meta name="theme-color" content="#0b0b0d" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script type="module" src="./firebase-auth.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,15 +13,15 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4146748834676749" crossorigin="anonymous"></script>
   <style>
     :root {
-      --bg: #0b0b0d;
-      --panel: rgba(26, 26, 30, 0.82);
-      --card: rgba(255, 255, 255, 0.05);
-      --accent: #ffffff;
-      --accent-2: #d7d7de;
-      --text: #f3f3f6;
-      --muted: #b3b3bc;
-      --border: rgba(255, 255, 255, 0.12);
-      --glow: 0 22px 56px rgba(0, 0, 0, 0.65);
+      --bg: #0f111a;
+      --panel: rgba(24, 27, 41, 0.8);
+      --card: rgba(255, 255, 255, 0.04);
+      --accent: #ff9a3c;
+      --accent-2: #4dd0e1;
+      --text: #e7ecf4;
+      --muted: #9aa0af;
+      --border: rgba(255, 255, 255, 0.08);
+      --glow: 0 25px 60px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -37,8 +32,9 @@
       margin: 0;
       min-height: 100vh;
       font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(rgba(8, 8, 10, 0.78), rgba(8, 8, 10, 0.78)),
-                  url("./Fifth_Avenue_1930s_18.jpg") center / cover fixed no-repeat,
+      background: radial-gradient(circle at 20% 20%, #1d2030 0, transparent 35%),
+                  radial-gradient(circle at 80% 0%, #222c45 0, transparent 30%),
+                  radial-gradient(circle at 50% 80%, #0d6b6c 0, transparent 30%),
                   var(--bg);
       color: var(--text);
       padding: 48px 18px 64px;
@@ -61,8 +57,6 @@
     }
 
     header.hero {
-      position: relative;
-      z-index: 20;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
@@ -77,16 +71,17 @@
     }
 
     .brand-mark {
-      width: clamp(160px, 30vw, 300px);
-      display: block;
-      filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.32));
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      display: block;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: #0f111a;
+      letter-spacing: 0.4px;
+      box-shadow: 0 15px 35px rgba(255, 154, 60, 0.35);
     }
 
     h1 {
@@ -124,70 +119,6 @@
     .btn:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.18); }
 
     .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0f111a; border-color: transparent; }
-
-    .tab-menu-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      z-index: 200;
-    }
-
-    #tabMenuBtn {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .tab-menu-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      min-width: 260px;
-      padding: 12px;
-      border-radius: 12px;
-      z-index: 10000;
-      display: none;
-      gap: 8px;
-      flex-direction: column;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      box-shadow: var(--glow);
-      backdrop-filter: blur(14px);
-    }
-
-    .tab-menu-panel.open { display: flex; }
-
-    .tab-menu-title {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .tab-menu-input {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      padding: 10px 12px;
-      font-size: 14px;
-      outline: none;
-    }
-
-    .tab-menu-input:focus {
-      border-color: rgba(255,255,255,0.35);
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
-    }
-
-    .tab-menu-actions {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .tab-menu-actions .btn {
-      justify-content: center;
-      padding: 9px 10px;
-      font-size: 13px;
-    }
 
     .panel {
       padding: 24px 24px 18px;
@@ -256,7 +187,7 @@
       transition: border-color 120ms ease, box-shadow 120ms ease;
     }
 
-    .search input:focus { border-color: rgba(255, 255, 255, 0.35); box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12); }
+    .search input:focus { border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 0 6px rgba(77, 208, 225, 0.1); }
 
     .search svg { position: absolute; margin-left: 16px; pointer-events: none; color: var(--muted); }
 
@@ -279,7 +210,6 @@
       body { padding: 24px 14px 48px; }
       header.hero { padding: 22px; }
       h1 { font-size: 30px; }
-      .brand-mark { width: min(68vw, 240px); }
     }
   </style>
 </head>
@@ -288,7 +218,7 @@
     <header class="hero glass">
       <div>
         <div class="brand">
-          <div class="brand-mark"><img src="./ZERO.png" alt="Zero Games logo" /></div>
+          <div class="brand-mark">ZG</div>
           <div>
             <h1>Zero Games</h1>
             <p class="lead">A clean, fast directory of unblocked classics, Flash throwbacks, and emulated gems. Everything here is one click away.</p>
@@ -296,20 +226,6 @@
         </div>
         <div class="hero-actions">
           <a class="btn primary" href="https://github.com/CBGamesdev/chiliblox">Report an issue</a>
-          <button id="installAppBtn" class="btn" type="button" style="display:none;">Install App</button>
-          <div class="tab-menu-wrap">
-            <button id="tabMenuBtn" class="btn" type="button">Tab Menu</button>
-            <div id="tabMenuPanel" class="tab-menu-panel glass">
-              <p class="tab-menu-title">Tab name</p>
-              <input id="tabNameInput" class="tab-menu-input" type="text" placeholder="Enter tab name" />
-              <div class="tab-menu-actions">
-                <button id="saveTabNameBtn" class="btn" type="button">Save Name</button>
-                <button id="setFaviconBtn" class="btn" type="button">Set Icon</button>
-                <button id="resetTabStyleBtn" class="btn" type="button">Reset</button>
-              </div>
-              <input id="faviconFileInput" type="file" accept="image/*" style="display:none;" />
-            </div>
-          </div>
           <a class="btn" href="mediamisc/credits.html">Credits</a>
         </div>
       </div>
@@ -416,10 +332,8 @@
         <a class="pill game-link" href="cookie/index.html" data-label="Cookie Clicker">Cookie Clicker</a>
         <a class="pill game-link" href="ctr/index.html" data-label="Cut The Rope">Cut The Rope</a>
         <a class="pill game-link" href="dosbox/?soft=DOOM" data-label="DOOM">DOOM</a>
-        <a class="pill game-link" href="1/index.html" data-label="FNAF 1">FNAF 1</a>
-        <a class="pill game-link" href="2/index.html" data-label="FNAF 2">FNAF 2</a>
-        <a class="pill game-link" href="3/index.html" data-label="FNAF 3">FNAF 3</a>
-        <a class="pill game-link" href="4/index.html" data-label="FNAF 4">FNAF 4</a>
+        <a class="pill game-link" href="FNAF/2/index.html" data-label="FNAF 2">FNAF 2</a>
+        <a class="pill game-link" href="FNAF/3/index.html" data-label="FNAF 3">FNAF 3</a>
         <a class="pill game-link" href="geomatrydash/geodash1.html" data-label="Geometry Dash">Geometry Dash</a>
         <a class="pill game-link" href="geomatrydash/Geometry Dash Subzero.html" data-label="Geometry Dash Subzero">Geometry Dash: Subzero</a>
         <a class="pill game-link" href="googdino/index.html" data-label="Google Dinosaur">Google Dinosaur</a>
@@ -464,7 +378,6 @@
         <a class="pill game-link" href="GBA-gh-pages/launcher.html#supermarioadvance2" data-label="Super Mario World GBA">Super Mario World (GBA)</a>
         <a class="pill game-link" href="emu/umk3.html" data-label="Ultimate Mortal Kombat 3 SNES">Ultimate Mortal Kombat 3 (SNES)</a>
         <a class="pill game-link" href="emu/mariokartds.html" data-label="Mario Kart DS">Mario Kart (DS)</a>
-        <a class="pill game-link" href="emu/nds-base.html" data-label="Burnout Legends NDS">Burnout Legends (NDS)</a>
         <a class="pill game-link" href="emu/psp.html" data-label="PSP Launcher EmulatorJS">PSP Launcher</a>
         <a class="pill game-link" href="emu/goldeneye.html" data-label="Goldeneye 007 N64">Goldeneye 007 (N64)</a>
         <a class="pill game-link" href="emu/mkart64.html" data-label="Mario Kart 64 N64">Mario Kart 64 (N64)</a>
@@ -484,52 +397,9 @@
 
   <script>
     // Simple client-side search across all game pills
-    const TAB_TITLE_KEY = "zg_custom_tab_title";
-    const TAB_FAVICON_KEY = "zg_custom_tab_favicon";
-    const DEFAULT_TITLE = "Zero Games";
-    const DEFAULT_FAVICON = "./ZERO.png?v=2";
-
-    const setDocumentFavicon = (href) => {
-      if (!href) return;
-      const normalizedHref = href.startsWith("data:")
-        ? href
-        : `${href}${href.includes("?") ? "&" : "?"}v=${Date.now()}`;
-
-      const existing = Array.from(document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]'));
-      existing.forEach((link) => link.remove());
-
-      const iconRels = ["icon", "shortcut icon", "apple-touch-icon"];
-      iconRels.forEach((rel) => {
-        const link = document.createElement("link");
-        link.rel = rel;
-        if (rel !== "apple-touch-icon") {
-          link.type = "image/png";
-          link.sizes = "192x192";
-        }
-        link.href = normalizedHref;
-        document.head.appendChild(link);
-      });
-    };
-
-    const applyStoredTabCustomization = () => {
-      const storedTitle = localStorage.getItem(TAB_TITLE_KEY);
-      const storedFavicon = localStorage.getItem(TAB_FAVICON_KEY);
-      document.title = storedTitle || DEFAULT_TITLE;
-      setDocumentFavicon(storedFavicon || DEFAULT_FAVICON);
-    };
-
-    applyStoredTabCustomization();
-
     const searchInput = document.getElementById("search");
     const pills = Array.from(document.querySelectorAll(".game-link"));
     const sections = Array.from(document.querySelectorAll("[data-section]"));
-    const tabMenuBtn = document.getElementById("tabMenuBtn");
-    const tabMenuPanel = document.getElementById("tabMenuPanel");
-    const tabNameInput = document.getElementById("tabNameInput");
-    const saveTabNameBtn = document.getElementById("saveTabNameBtn");
-    const setFaviconBtn = document.getElementById("setFaviconBtn");
-    const resetTabStyleBtn = document.getElementById("resetTabStyleBtn");
-    const faviconFileInput = document.getElementById("faviconFileInput");
 
     const filter = (query) => {
       const q = query.trim().toLowerCase();
@@ -552,89 +422,6 @@
         searchInput.focus();
       }
     });
-
-    let deferredInstallPrompt = null;
-    const installBtn = document.getElementById("installAppBtn");
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-      if (installBtn) installBtn.style.display = "inline-flex";
-    });
-
-    if (installBtn) {
-      installBtn.addEventListener("click", async () => {
-        if (!deferredInstallPrompt) {
-          alert("Install isn't available yet. Open in Chrome/Edge and use Add to Home Screen from the browser menu.");
-          return;
-        }
-        deferredInstallPrompt.prompt();
-        await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        installBtn.style.display = "none";
-      });
-    }
-
-    if (tabNameInput) {
-      tabNameInput.value = document.title;
-    }
-
-    if (tabMenuBtn && tabMenuPanel) {
-      tabMenuBtn.addEventListener("click", () => {
-        tabMenuPanel.classList.toggle("open");
-      });
-      document.addEventListener("click", (event) => {
-        if (!tabMenuPanel.classList.contains("open")) return;
-        const target = event.target;
-        if (!(target instanceof Node)) return;
-        if (!tabMenuPanel.contains(target) && !tabMenuBtn.contains(target)) {
-          tabMenuPanel.classList.remove("open");
-        }
-      });
-    }
-
-    if (saveTabNameBtn && tabNameInput) {
-      saveTabNameBtn.addEventListener("click", () => {
-        const cleanTitle = tabNameInput.value.trim() || DEFAULT_TITLE;
-        document.title = cleanTitle;
-        localStorage.setItem(TAB_TITLE_KEY, cleanTitle);
-      });
-    }
-
-    if (setFaviconBtn && faviconFileInput) {
-      setFaviconBtn.addEventListener("click", () => {
-        faviconFileInput.value = "";
-        faviconFileInput.click();
-      });
-
-      faviconFileInput.addEventListener("change", () => {
-        const file = faviconFileInput.files && faviconFileInput.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = () => {
-          const dataUrl = String(reader.result || "");
-          if (!dataUrl) return;
-          setDocumentFavicon(dataUrl);
-          localStorage.setItem(TAB_FAVICON_KEY, dataUrl);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    if (resetTabStyleBtn) {
-      resetTabStyleBtn.addEventListener("click", () => {
-        localStorage.removeItem(TAB_TITLE_KEY);
-        localStorage.removeItem(TAB_FAVICON_KEY);
-        document.title = DEFAULT_TITLE;
-        setDocumentFavicon(DEFAULT_FAVICON);
-      });
-    }
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      });
-    }
   </script>
 </body>
 </html>

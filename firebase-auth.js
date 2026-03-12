@@ -44,21 +44,21 @@ const isAdmin = (user) => normalizeEmail(user?.email) === normalizeEmail(ADMIN_E
 const styles = `
   html.access-locked body > *:not(.access-overlay):not(.auth-overlay):not(.auth-badge):not(.admin-overlay) { filter: blur(12px); pointer-events: none; user-select: none; }
   .auth-badge { position: fixed; top: 16px; right: 16px; z-index: 9000; display: flex; gap: 8px; align-items: center; font-family: "Space Grotesk", Arial, sans-serif; }
-  .auth-chip { background: rgba(26,26,30,0.92); border: 1px solid rgba(255,255,255,0.2); color: #f3f3f6; padding: 8px 10px; border-radius: 10px; font-size: 14px; }
-  .auth-btn { background: linear-gradient(135deg, #ffffff, #d7d7de); color: #0b0b0d; border: 0; border-radius: 10px; padding: 9px 12px; font-weight: 700; cursor: pointer; box-shadow: 0 0 22px rgba(255,255,255,0.22); }
-  .auth-btn.secondary { background: rgba(255,255,255,0.08); color: #f3f3f6; border: 1px solid rgba(255,255,255,0.2); box-shadow: none; }
+  .auth-chip { background: rgba(24,27,41,0.9); border: 1px solid rgba(255,255,255,0.15); color: #e7ecf4; padding: 8px 10px; border-radius: 10px; font-size: 14px; }
+  .auth-btn { background: linear-gradient(135deg, #ff9a3c, #4dd0e1); color: #0f111a; border: 0; border-radius: 10px; padding: 9px 12px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  .auth-btn.secondary { background: rgba(255,255,255,0.08); color: #e7ecf4; border: 1px solid rgba(255,255,255,0.15); box-shadow: none; }
   .auth-overlay, .access-overlay, .admin-overlay { position: fixed; inset: 0; background: rgba(10,12,18,0.78); backdrop-filter: blur(12px); display: none; place-items: center; z-index: 9500; }
   .auth-overlay.open, .access-overlay.open, .admin-overlay.open { display: grid; }
-  .auth-card, .access-card, .admin-card { width: min(460px, 94vw); background: rgba(26,26,30,0.94); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px; box-shadow: 0 24px 60px rgba(0,0,0,0.58); color: #f3f3f6; font-family: "Space Grotesk", Arial, sans-serif; }
+  .auth-card, .access-card, .admin-card { width: min(460px, 94vw); background: rgba(24,27,41,0.94); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 22px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); color: #e7ecf4; font-family: "Space Grotesk", Arial, sans-serif; }
   .auth-card h2, .access-card h2, .admin-card h2 { margin: 0 0 8px; font-size: 22px; }
-  .auth-card p, .access-card p, .admin-card p { margin: 0 0 14px; color: #b3b3bc; }
+  .auth-card p, .access-card p, .admin-card p { margin: 0 0 14px; color: #a4acbc; }
   .auth-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-  .auth-field label { font-size: 13px; color: #d8d8df; }
+  .auth-field label { font-size: 13px; color: #c6ccda; }
   .auth-field input { padding: 11px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #e7ecf4; font-size: 15px; }
   .auth-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
-  .auth-error { color: #ffffff; min-height: 18px; font-weight: 600; margin-top: 8px; }
+  .auth-error { color: #ff9a3c; min-height: 18px; font-weight: 600; margin-top: 8px; }
   .pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); }
-  .pill .remove { background: transparent; border: 0; color: #ffffff; cursor: pointer; font-weight: 700; }
+  .pill .remove { background: transparent; border: 0; color: #ff9a3c; cursor: pointer; font-weight: 700; }
   .admin-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
   .admin-form { display: flex; gap: 8px; margin-top: 10px; }
   .admin-form input { flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #e7ecf4; }
@@ -286,11 +286,7 @@ const wireAuth = () => {
       await signInWithPopup(auth, googleProvider);
       closeAuth();
     } catch (e) {
-      if (e.code === 'auth/popup-closed-by-user') {
-        showError(err, "Sign-in popup was closed. Please try again.");
-      } else {
-        showError(err, e.message || "Google sign-in failed");
-      }
+      showError(err, e.message || "Google sign-in failed");
     }
   };
 
